@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wky.dao.repository.LicensePlateAssignmentMapper">
+  <resultMap id="BaseResultMap" type="com.wky.dao.entity.LicensePlateAssignment">
+    <id column="pk_id" jdbcType="INTEGER" property="pkId" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="prefix" jdbcType="VARCHAR" property="prefix" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="city_py" jdbcType="VARCHAR" property="cityPy" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="province_abbreviate" jdbcType="VARCHAR" property="provinceAbbreviate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pk_id, code, prefix, city, city_py, city_code, province, province_code, province_abbreviate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_license_plate_assignment
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_license_plate_assignment
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wky.dao.entity.LicensePlateAssignment">
+    insert into t_license_plate_assignment (pk_id, code, prefix, 
+      city, city_py, city_code, 
+      province, province_code, province_abbreviate
+      )
+    values (#{pkId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{prefix,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{cityPy,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{provinceAbbreviate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wky.dao.entity.LicensePlateAssignment">
+    insert into t_license_plate_assignment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        pk_id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="prefix != null">
+        prefix,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="cityPy != null">
+        city_py,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="provinceAbbreviate != null">
+        province_abbreviate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        #{pkId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="prefix != null">
+        #{prefix,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="cityPy != null">
+        #{cityPy,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceAbbreviate != null">
+        #{provinceAbbreviate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wky.dao.entity.LicensePlateAssignment">
+    update t_license_plate_assignment
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="prefix != null">
+        prefix = #{prefix,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="cityPy != null">
+        city_py = #{cityPy,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceAbbreviate != null">
+        province_abbreviate = #{provinceAbbreviate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wky.dao.entity.LicensePlateAssignment">
+    update t_license_plate_assignment
+    set code = #{code,jdbcType=VARCHAR},
+      prefix = #{prefix,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      city_py = #{cityPy,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province_abbreviate = #{provinceAbbreviate,jdbcType=VARCHAR}
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+</mapper>

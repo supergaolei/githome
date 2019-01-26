@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wky.dao.repository.BillMapper">
+  <resultMap id="BaseResultMap" type="com.wky.dao.entity.Bill">
+    <id column="pk_id" jdbcType="INTEGER" property="pkId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="kind" jdbcType="TINYINT" property="kind" />
+    <result column="way" jdbcType="TINYINT" property="way" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="rebate_balance" jdbcType="DECIMAL" property="rebateBalance" />
+    <result column="spread_balance" jdbcType="DECIMAL" property="spreadBalance" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pk_id, user_id, kind, way, money, rebate_balance, spread_balance, order_no, type, 
+    is_delete, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_bill
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_bill
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wky.dao.entity.Bill">
+    insert into t_bill (pk_id, user_id, kind, 
+      way, money, rebate_balance, 
+      spread_balance, order_no, type, 
+      is_delete, create_time)
+    values (#{pkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{kind,jdbcType=TINYINT}, 
+      #{way,jdbcType=TINYINT}, #{money,jdbcType=DECIMAL}, #{rebateBalance,jdbcType=DECIMAL}, 
+      #{spreadBalance,jdbcType=DECIMAL}, #{orderNo,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{isDelete,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wky.dao.entity.Bill">
+    insert into t_bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        pk_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="kind != null">
+        kind,
+      </if>
+      <if test="way != null">
+        way,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="rebateBalance != null">
+        rebate_balance,
+      </if>
+      <if test="spreadBalance != null">
+        spread_balance,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        #{pkId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="kind != null">
+        #{kind,jdbcType=TINYINT},
+      </if>
+      <if test="way != null">
+        #{way,jdbcType=TINYINT},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="rebateBalance != null">
+        #{rebateBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="spreadBalance != null">
+        #{spreadBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wky.dao.entity.Bill">
+    update t_bill
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="kind != null">
+        kind = #{kind,jdbcType=TINYINT},
+      </if>
+      <if test="way != null">
+        way = #{way,jdbcType=TINYINT},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="rebateBalance != null">
+        rebate_balance = #{rebateBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="spreadBalance != null">
+        spread_balance = #{spreadBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wky.dao.entity.Bill">
+    update t_bill
+    set user_id = #{userId,jdbcType=INTEGER},
+      kind = #{kind,jdbcType=TINYINT},
+      way = #{way,jdbcType=TINYINT},
+      money = #{money,jdbcType=DECIMAL},
+      rebate_balance = #{rebateBalance,jdbcType=DECIMAL},
+      spread_balance = #{spreadBalance,jdbcType=DECIMAL},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+</mapper>

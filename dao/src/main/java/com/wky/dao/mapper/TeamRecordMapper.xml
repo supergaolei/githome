@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wky.dao.repository.TeamRecordMapper">
+  <resultMap id="BaseResultMap" type="com.wky.dao.entity.TeamRecord">
+    <id column="pk_id" jdbcType="INTEGER" property="pkId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="contribution_user_id" jdbcType="INTEGER" property="contributionUserId" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pk_id, user_id, count, money, contribution_user_id, level, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_team_record
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_team_record
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wky.dao.entity.TeamRecord">
+    insert into t_team_record (pk_id, user_id, count, 
+      money, contribution_user_id, level, 
+      create_time)
+    values (#{pkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL}, #{contributionUserId,jdbcType=INTEGER}, #{level,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wky.dao.entity.TeamRecord">
+    insert into t_team_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        pk_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="contributionUserId != null">
+        contribution_user_id,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        #{pkId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="contributionUserId != null">
+        #{contributionUserId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wky.dao.entity.TeamRecord">
+    update t_team_record
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="contributionUserId != null">
+        contribution_user_id = #{contributionUserId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wky.dao.entity.TeamRecord">
+    update t_team_record
+    set user_id = #{userId,jdbcType=INTEGER},
+      count = #{count,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      contribution_user_id = #{contributionUserId,jdbcType=INTEGER},
+      level = #{level,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+</mapper>

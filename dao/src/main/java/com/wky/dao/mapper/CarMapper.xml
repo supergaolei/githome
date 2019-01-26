@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wky.dao.repository.CarMapper">
+  <resultMap id="BaseResultMap" type="com.wky.dao.entity.Car">
+    <id column="pk_id" jdbcType="INTEGER" property="pkId" />
+    <result column="plate_number" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="master_name" jdbcType="VARCHAR" property="masterName" />
+    <result column="master_card" jdbcType="VARCHAR" property="masterCard" />
+    <result column="vin_no" jdbcType="VARCHAR" property="vinNo" />
+    <result column="engineNo" jdbcType="VARCHAR" property="engineno" />
+    <result column="first_register_date" jdbcType="TIMESTAMP" property="firstRegisterDate" />
+    <result column="seat" jdbcType="INTEGER" property="seat" />
+    <result column="car_model_card" jdbcType="VARCHAR" property="carModelCard" />
+    <result column="brand_model" jdbcType="VARCHAR" property="brandModel" />
+    <result column="is_transfer" jdbcType="TINYINT" property="isTransfer" />
+    <result column="transfer_time" jdbcType="TIMESTAMP" property="transferTime" />
+    <result column="commercial_insurance_date" jdbcType="TIMESTAMP" property="commercialInsuranceDate" />
+    <result column="compulsory_insurance_date" jdbcType="TIMESTAMP" property="compulsoryInsuranceDate" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pk_id, plate_number, master_name, master_card, vin_no, engineNo, first_register_date, 
+    seat, car_model_card, brand_model, is_transfer, transfer_time, commercial_insurance_date, 
+    compulsory_insurance_date, is_delete, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_car
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_car
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wky.dao.entity.Car">
+    insert into t_car (pk_id, plate_number, master_name, 
+      master_card, vin_no, engineNo, 
+      first_register_date, seat, car_model_card, 
+      brand_model, is_transfer, transfer_time, 
+      commercial_insurance_date, compulsory_insurance_date, 
+      is_delete, create_time)
+    values (#{pkId,jdbcType=INTEGER}, #{plateNumber,jdbcType=VARCHAR}, #{masterName,jdbcType=VARCHAR}, 
+      #{masterCard,jdbcType=VARCHAR}, #{vinNo,jdbcType=VARCHAR}, #{engineno,jdbcType=VARCHAR}, 
+      #{firstRegisterDate,jdbcType=TIMESTAMP}, #{seat,jdbcType=INTEGER}, #{carModelCard,jdbcType=VARCHAR}, 
+      #{brandModel,jdbcType=VARCHAR}, #{isTransfer,jdbcType=TINYINT}, #{transferTime,jdbcType=TIMESTAMP}, 
+      #{commercialInsuranceDate,jdbcType=TIMESTAMP}, #{compulsoryInsuranceDate,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wky.dao.entity.Car">
+    insert into t_car
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        pk_id,
+      </if>
+      <if test="plateNumber != null">
+        plate_number,
+      </if>
+      <if test="masterName != null">
+        master_name,
+      </if>
+      <if test="masterCard != null">
+        master_card,
+      </if>
+      <if test="vinNo != null">
+        vin_no,
+      </if>
+      <if test="engineno != null">
+        engineNo,
+      </if>
+      <if test="firstRegisterDate != null">
+        first_register_date,
+      </if>
+      <if test="seat != null">
+        seat,
+      </if>
+      <if test="carModelCard != null">
+        car_model_card,
+      </if>
+      <if test="brandModel != null">
+        brand_model,
+      </if>
+      <if test="isTransfer != null">
+        is_transfer,
+      </if>
+      <if test="transferTime != null">
+        transfer_time,
+      </if>
+      <if test="commercialInsuranceDate != null">
+        commercial_insurance_date,
+      </if>
+      <if test="compulsoryInsuranceDate != null">
+        compulsory_insurance_date,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        #{pkId,jdbcType=INTEGER},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="masterName != null">
+        #{masterName,jdbcType=VARCHAR},
+      </if>
+      <if test="masterCard != null">
+        #{masterCard,jdbcType=VARCHAR},
+      </if>
+      <if test="vinNo != null">
+        #{vinNo,jdbcType=VARCHAR},
+      </if>
+      <if test="engineno != null">
+        #{engineno,jdbcType=VARCHAR},
+      </if>
+      <if test="firstRegisterDate != null">
+        #{firstRegisterDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="seat != null">
+        #{seat,jdbcType=INTEGER},
+      </if>
+      <if test="carModelCard != null">
+        #{carModelCard,jdbcType=VARCHAR},
+      </if>
+      <if test="brandModel != null">
+        #{brandModel,jdbcType=VARCHAR},
+      </if>
+      <if test="isTransfer != null">
+        #{isTransfer,jdbcType=TINYINT},
+      </if>
+      <if test="transferTime != null">
+        #{transferTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commercialInsuranceDate != null">
+        #{commercialInsuranceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="compulsoryInsuranceDate != null">
+        #{compulsoryInsuranceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wky.dao.entity.Car">
+    update t_car
+    <set>
+      <if test="plateNumber != null">
+        plate_number = #{plateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="masterName != null">
+        master_name = #{masterName,jdbcType=VARCHAR},
+      </if>
+      <if test="masterCard != null">
+        master_card = #{masterCard,jdbcType=VARCHAR},
+      </if>
+      <if test="vinNo != null">
+        vin_no = #{vinNo,jdbcType=VARCHAR},
+      </if>
+      <if test="engineno != null">
+        engineNo = #{engineno,jdbcType=VARCHAR},
+      </if>
+      <if test="firstRegisterDate != null">
+        first_register_date = #{firstRegisterDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="seat != null">
+        seat = #{seat,jdbcType=INTEGER},
+      </if>
+      <if test="carModelCard != null">
+        car_model_card = #{carModelCard,jdbcType=VARCHAR},
+      </if>
+      <if test="brandModel != null">
+        brand_model = #{brandModel,jdbcType=VARCHAR},
+      </if>
+      <if test="isTransfer != null">
+        is_transfer = #{isTransfer,jdbcType=TINYINT},
+      </if>
+      <if test="transferTime != null">
+        transfer_time = #{transferTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commercialInsuranceDate != null">
+        commercial_insurance_date = #{commercialInsuranceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="compulsoryInsuranceDate != null">
+        compulsory_insurance_date = #{compulsoryInsuranceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wky.dao.entity.Car">
+    update t_car
+    set plate_number = #{plateNumber,jdbcType=VARCHAR},
+      master_name = #{masterName,jdbcType=VARCHAR},
+      master_card = #{masterCard,jdbcType=VARCHAR},
+      vin_no = #{vinNo,jdbcType=VARCHAR},
+      engineNo = #{engineno,jdbcType=VARCHAR},
+      first_register_date = #{firstRegisterDate,jdbcType=TIMESTAMP},
+      seat = #{seat,jdbcType=INTEGER},
+      car_model_card = #{carModelCard,jdbcType=VARCHAR},
+      brand_model = #{brandModel,jdbcType=VARCHAR},
+      is_transfer = #{isTransfer,jdbcType=TINYINT},
+      transfer_time = #{transferTime,jdbcType=TIMESTAMP},
+      commercial_insurance_date = #{commercialInsuranceDate,jdbcType=TIMESTAMP},
+      compulsory_insurance_date = #{compulsoryInsuranceDate,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+</mapper>

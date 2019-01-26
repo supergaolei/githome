@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wky.dao.repository.AdvertisementMapper">
+  <resultMap id="BaseResultMap" type="com.wky.dao.entity.Advertisement">
+    <id column="pk_id" jdbcType="INTEGER" property="pkId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="sort_time" jdbcType="TIMESTAMP" property="sortTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pk_id, title, logo, link, type, is_delete, sort_time, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_advertisement
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_advertisement
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wky.dao.entity.Advertisement">
+    insert into t_advertisement (pk_id, title, logo, 
+      link, type, is_delete, 
+      sort_time, create_time, update_time
+      )
+    values (#{pkId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{link,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}, 
+      #{sortTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wky.dao.entity.Advertisement">
+    insert into t_advertisement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        pk_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="link != null">
+        link,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="sortTime != null">
+        sort_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        #{pkId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="sortTime != null">
+        #{sortTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wky.dao.entity.Advertisement">
+    update t_advertisement
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="sortTime != null">
+        sort_time = #{sortTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wky.dao.entity.Advertisement">
+    update t_advertisement
+    set title = #{title,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      sort_time = #{sortTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </update>
+</mapper>

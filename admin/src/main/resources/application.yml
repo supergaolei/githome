@@ -1,0 +1,39 @@
+  spring:
+    application:
+        name: api
+
+    profiles:
+        active: dev
+
+    # 静态资源 虚拟映射路径
+#    mvc:
+#      static-path-pattern: /upload/**
+#    http:
+#      multipart:
+#        location: /opt/upload/
+#    resources:
+#      static-locations: file:${spring.http.multipart.location}
+
+    # 返回客户端时间格式化
+    jackson:
+      date-format: yyyy-MM-dd HH:mm
+      time-zone: GMT+8
+
+  server:
+     port: 8090
+
+
+
+  logging:
+      config: classpath:log/logback-spring.xml
+
+  mybatis:
+    type-aliases-package: com.wky.dao.entity
+    mapper-locations: classpath:com/wky/dao/mapper/*Mapper.xml
+
+
+
+
+
+
+
